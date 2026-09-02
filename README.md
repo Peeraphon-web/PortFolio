@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Peeraphon Laoha - Portfolio
 
-## Getting Started
+Professional portfolio for Peeraphon Laoha, a Software Engineer and Full-stack Developer building practical web and cross-platform software products.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React and TypeScript
+- Tailwind CSS
+- Motion for React
+- GSAP with ScrollTrigger
+- Spline Viewer progressive enhancement
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Quality checks:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+There is currently no test script configured.
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+The homepage is composed from Server Components by default. Portfolio content lives in centralized data modules under `src/data`. Small Client Components own browser-only behavior for capability transitions, journey activation, hero pointer response, GSAP/ScrollTrigger, and the deferred Spline scene.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Spline is progressive enhancement: the static page remains usable while the viewer loads, fails, or is disabled for reduced-motion users.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## SEO Configuration
 
-## Deploy on Vercel
+Set `SITE_URL` to the verified production HTTPS origin before deployment. Metadata, the canonical URL, Open Graph URLs, robots sitemap output, and the single-page sitemap use this value when configured. The site intentionally does not assume the known GoodLife URL is the portfolio domain.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project is compatible with Vercel. Configure `SITE_URL` in the deployment environment, then run the production build before publishing.
