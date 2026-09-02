@@ -15,7 +15,7 @@ export const journeySteps: JourneyStep[] = [
       "Building an engineering foundation through Information Technology and Computing study.",
     details: [
       "Bachelor of Science in Information Technology and Computing (CSI)",
-      "GPA 3.30",
+      "GPA x.xx",
     ],
   },
   {
