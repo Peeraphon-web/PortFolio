@@ -1,4 +1,5 @@
 import { profile } from "@/data/profile";
+import { TypewriterLine } from "@/components/motion/typewriter-line";
 import { HeroSystem } from "@/components/sections/hero-system";
 
 export function HeroSection() {
@@ -21,10 +22,10 @@ export function HeroSection() {
           <h1 className="hero-line hero-line-2 mt-7 max-w-4xl text-5xl font-semibold leading-none md:mt-8 md:text-7xl lg:text-8xl">
             {profile.name.toUpperCase()}
           </h1>
-          <p className="hero-line hero-line-3 mt-10 max-w-2xl text-lg leading-8 text-muted md:mt-12 md:text-xl">
-            I build digital products that turn real problems into useful
-            experiences.
-          </p>
+          <TypewriterLine
+            className="hero-line hero-line-3 mt-10 max-w-2xl text-lg leading-8 text-muted md:mt-12 md:text-xl"
+            text="I build digital products that turn real problems into useful experiences."
+          />
           <div className="hero-line hero-line-4 mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href="#projects"

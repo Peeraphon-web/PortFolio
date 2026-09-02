@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/layout/site-header";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollExperience } from "@/components/motion/scroll-experience";
 import { FeaturedProjects } from "@/components/projects/featured-projects";
 import { EngineeringProfile } from "@/components/sections/engineering-profile";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -8,6 +9,7 @@ import { profile } from "@/data/profile";
 export default function Home() {
   return (
     <>
+      <ScrollExperience />
       <SiteHeader />
       <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <HeroSection />

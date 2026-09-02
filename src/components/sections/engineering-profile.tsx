@@ -1,5 +1,6 @@
 import { CapabilitySystem } from "@/components/sections/capability-system";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollRevealText } from "@/components/react-bits/scroll-reveal-text";
 import { SplineScene } from "@/components/sections/spline-scene";
 import { JourneyPath } from "@/components/sections/journey-path";
 
@@ -17,10 +18,10 @@ export function EngineeringProfile() {
             <i />
           </div>
           <div>
-            <h2 id="about-heading">
-              I build practical software across web, data, automation, and
-              desktop experiences.
-            </h2>
+            <ScrollRevealText
+              id="about-heading"
+              text="I build practical software across web, data, automation, and desktop experiences."
+            />
             <p>
               I&apos;m an Information Technology and Computing student at
               Sripatum University focused on turning real workflow problems into

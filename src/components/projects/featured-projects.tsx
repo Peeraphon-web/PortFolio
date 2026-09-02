@@ -1,8 +1,14 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { Reveal } from "@/components/motion/reveal";
+import { ScrollFloat } from "@/components/react-bits/scroll-float";
 import { projects, type Project } from "@/data/projects";
 import { getGsap } from "@/lib/gsap";
+import {
+  desktopMotionAllowedMediaQuery,
+  motionAllowedMediaQuery,
+} from "@/lib/motion-preferences";
 
 function GoodLifeVisual() {
   return (
@@ -100,7 +106,77 @@ export function FeaturedProjects() {
     const { gsap } = getGsap();
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
-      media.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      media.add(motionAllowedMediaQuery, () => {
+        gsap.utils.toArray<HTMLElement>(".case-study").forEach((article) => {
+          const visual = article.querySelector<HTMLElement>(".project-visual");
+          const copyBlocks = article.querySelectorAll<HTMLElement>(
+            ".case-study-meta, .case-study h3, .case-study-summary, .case-study-brief, .case-study-evidence, .case-study-stack",
+          );
+          const visualDetails = article.querySelectorAll<HTMLElement>(
+            ".goodlife-calendar, .goodlife-signal, .jodjum-flow, .jodjum-state",
+          );
+
+          if (!visual) return;
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: article,
+              start: "top 76%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          timeline
+            .from(visual, {
+              opacity: 0,
+              scale: 0.93,
+              clipPath: "inset(12% 8% 12% 8%)",
+              filter: "blur(14px)",
+              duration: 0.9,
+              ease: "power4.out",
+            })
+            .from(
+              copyBlocks,
+              {
+                x: article.classList.contains("case-study--jodjum") ? 28 : -28,
+                opacity: 0,
+                duration: 0.72,
+                stagger: 0.065,
+                ease: "power3.out",
+              },
+              0.08,
+            )
+            .from(
+              visualDetails,
+              {
+                y: 18,
+                opacity: 0,
+                duration: 0.58,
+                stagger: 0.055,
+                ease: "power3.out",
+              },
+              0.34,
+            );
+        });
+
+        gsap.fromTo(
+          ".project-transition span",
+          { x: -48, opacity: 0.25 },
+          {
+            x: 48,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".project-transition",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+          },
+        );
+      });
+
+      media.add(desktopMotionAllowedMediaQuery, () => {
         gsap.utils.toArray<HTMLElement>(".case-study-visual-inner").forEach((visual) => {
           const article = visual.closest(".case-study");
           if (!article) return;
@@ -124,8 +200,10 @@ export function FeaturedProjects() {
   return (
     <section id="projects" ref={sectionRef} className="featured-work">
       <div className="featured-work-intro mx-auto max-w-6xl px-5 md:px-8">
-        <h2>Selected work</h2>
-        <p>Practical software products explored through the systems, decisions, and workflows behind them.</p>
+        <ScrollFloat text="Selected work" />
+        <Reveal delay="short">
+          <p>Practical software products explored through the systems, decisions, and workflows behind them.</p>
+        </Reveal>
       </div>
       <div className="featured-work-cases mx-auto max-w-6xl px-5 md:px-8">
         <ProjectCaseStudy project={projects[0]} />

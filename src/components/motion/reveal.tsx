@@ -1,6 +1,5 @@
-"use client";
-
-import { useEffect, useRef, type ReactNode } from "react";
+import { type ReactNode } from "react";
+import { FadeContent } from "@/components/react-bits/fade-content";
 
 type RevealProps = {
   children: ReactNode;
@@ -9,39 +8,16 @@ type RevealProps = {
 };
 
 export function Reveal({ children, className = "", delay = "none" }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) {
-      return;
-    }
-
-    element.dataset.motionReady = "true";
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          element.dataset.visible = "true";
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.14 },
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, []);
+  const delayInSeconds = delay === "medium" ? 0.16 : delay === "short" ? 0.08 : 0;
 
   return (
-    <div
-      ref={ref}
-      data-visible="false"
-      data-delay={delay}
+    <FadeContent
+      blur
+      delay={delayInSeconds}
+      threshold={0.09}
       className={`reveal ${className}`}
     >
       {children}
-    </div>
+    </FadeContent>
   );
 }
