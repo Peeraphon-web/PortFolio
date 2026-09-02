@@ -35,13 +35,13 @@ export function EngineeringProfile() {
           </div>
         </Reveal>
 
-        <Reveal className="phase-four-scene" delay="short">
+        {/* <Reveal className="phase-four-scene" delay="short">
           <div className="phase-four-scene-copy">
             <p>Applied systems</p>
             <h2>Interface, data, sync, and delivery working together.</h2>
           </div>
           <SplineScene />
-        </Reveal>
+        </Reveal> */}
 
         <section
           id="stack"

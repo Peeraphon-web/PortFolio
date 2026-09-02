@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   ...(siteUrl ? { metadataBase: siteUrl } : {}),
-  title: "Peeraphon Laoha - Software Engineer & Full-stack Developer",
+  title: "Peeraphon LAOHA - Software Engineer & Full-stack Developer",
   description:
     "Software Engineer and Full-stack Developer building practical web, desktop, data, integration, and automation experiences with Next.js, TypeScript, Electron, and Supabase.",
-  applicationName: "Peeraphon Laoha Portfolio",
+  applicationName: "Peeraphon LAOHA Portfolio",
   authors: [{ name: profile.name }],
   creator: profile.name,
   alternates: siteUrl ? { canonical: "/" } : undefined,
