@@ -44,3 +44,8 @@ next-env.d.ts
 .claude/
 .codex/
 .cursor/
+
+
+AGENTS.md
+PRODUCT.md
+CLAUDE.md
